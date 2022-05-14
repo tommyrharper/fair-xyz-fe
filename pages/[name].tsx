@@ -19,7 +19,7 @@ const Collection: NextPage<CollectionProps> = ({ collection }) => {
             {/* <div className="font-bold text-xl mb-2 text-center">Manage your collections</div> */}
 
             <div className="font-NeueMontreal tablet:text-28px tablet:leading-34px laptop:text-33px laptop:leading-38px  desktop:text-40px desktop:leading-45px text-carbon inline mr-25">
-              Manage your collections
+              {collection.name}
             </div>
 
             <div className="flex-col items-center justify-center">
@@ -29,7 +29,18 @@ const Collection: NextPage<CollectionProps> = ({ collection }) => {
                   className="border rounded border-carbon hover:text-cotton hover:bg-carbon text-carbon p-0.5 mr-1.5 pl-1.5 pr-1.5 w-full"
                 >
                   <p className="font-NeueMontreal tablet:text-14px tablet:leading-18px  laptop:text-20px laptop:leading-24px  desktop:text-24px desktop:leading-26px">
-                    {collection?.name}
+                    Edit
+                  </p>
+                </button>
+              </div>
+
+              <div className="mt-1.5 w-full">
+                <button
+                  type="button"
+                  className="border rounded border-carbon hover:text-cotton hover:bg-carbon text-carbon p-0.5 mr-1.5 pl-1.5 pr-1.5 w-full"
+                >
+                  <p className="font-NeueMontreal tablet:text-14px tablet:leading-18px  laptop:text-20px laptop:leading-24px  desktop:text-24px desktop:leading-26px">
+                    Set reminder
                   </p>
                 </button>
               </div>
