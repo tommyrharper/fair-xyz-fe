@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import BackButton from "../../components/back-button";
 import Button from "../../components/button";
 import Header from "../../components/header";
+import TextInput from "../../components/text-input";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
@@ -23,19 +24,8 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
     <>
       <Header text={collection.name} />
 
-      <div className="w-full mt-3 mb-4">
-        <input
-          className="w-full flex-1 font-NeueMontreal focus:outline-none bg-cotton border-b border-black placeholder-mid_gray placeholder-opacity-70  tablet:text-14px tablet:h-8 laptop:text-18px laptop:h-9 desktop:text-22px transition-all duration-1500 outline-none"
-          placeholder={collection.name}
-        />
-      </div>
-
-      <div className="w-full mt-3 mb-4">
-        <input
-          className="w-full flex-1 font-NeueMontreal focus:outline-none bg-cotton border-b border-black placeholder-mid_gray placeholder-opacity-70  tablet:text-14px tablet:h-8 laptop:text-18px laptop:h-9 desktop:text-22px transition-all duration-1500 outline-none"
-          placeholder={collection.launchDate}
-        />
-      </div>
+      <TextInput placeholder={collection.name} />
+      <TextInput placeholder={collection.launchDate} />
 
       <Button text="Save" />
       <BackButton />
