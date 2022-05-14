@@ -1,12 +1,11 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
-import Link from "next/link";
-import Button from "../components/button";
+import Button from "../../components/button";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
   GetNftCollectionQuery,
-} from "../generated/graphql";
-import { addApolloState, initializeApollo } from "../lib/apolloClient";
+} from "../../generated/graphql";
+import { addApolloState, initializeApollo } from "../../lib/apolloClient";
 
 interface CollectionProps {
   collection: NftCollectionType;
