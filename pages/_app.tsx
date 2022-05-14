@@ -5,7 +5,7 @@ import { useApollo } from "../lib/apolloClient";
 import { NextPageWithLayout } from "../utils/types";
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+  Component: NextPageWithLayout<{}>;
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
