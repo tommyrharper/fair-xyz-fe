@@ -6,12 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cotton: {
-          50: '#F5F4F2',
-        }
+        cotton: "#E5E5E5",
+        'hard-cotton': "#F5F4F2",
+        carbon: "#28282A",
       },
     },
   },
   variants: {},
   plugins: [],
-}
+};
