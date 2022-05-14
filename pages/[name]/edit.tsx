@@ -12,9 +12,8 @@ import {
 } from "../../generated/graphql";
 import { DefaultLayout } from "../../layouts/default";
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
+import { getDateInputString } from "../../utils";
 import { NextPageWithLayout } from "../../utils/types";
-
-const getDateString = () => {};
 
 interface EditCollectionProps {
   collection: NftCollectionType;
@@ -23,12 +22,8 @@ interface EditCollectionProps {
 const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
   collection,
 }) => {
-  const currentLaunchDate = collection.launchDate
-    ? format(new Date(collection.launchDate), "yyyy-MM-d")
-    : undefined;
-
-  const [launchDate, setLaunchDate] = useState<string | undefined>(
-    currentLaunchDate
+  const [launchDate, setLaunchDate] = useState<string>(
+    getDateInputString(collection.launchDate)
   );
 
   console.log("launchDate", launchDate, typeof launchDate);
