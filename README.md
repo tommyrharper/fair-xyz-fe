@@ -43,3 +43,13 @@ npx graphql-codegen init
 > generate
 ```
 6. `npm run generate`
+7. Add tailwind:
+```
+npm i tailwindcss
+```
+- create `styles/index.css`
+```
+npx tailwind init
+```
+- create `postcss.config.js`
+- import `../styles/index.css` instead of `../styles/globals.css`
