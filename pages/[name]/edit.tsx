@@ -82,6 +82,7 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
             variables,
           });
         }}
+        disabled={loading}
       />
       <BackButton
         href={`/${data?.updateNFTCollection.name || collection.name}`}

@@ -1,34 +1,56 @@
 import type { GetServerSidePropsContext } from "next";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import BackButton from "../../components/back-button";
 import Button from "../../components/button";
 import Header from "../../components/header";
+import TextInput from "../../components/text-input";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
   GetNftCollectionQuery,
+  useCreateReminderMutation,
 } from "../../generated/graphql";
 import { DefaultLayout } from "../../layouts/default";
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
 import { NextPageWithLayout } from "../../utils/types";
 
-interface CollectionProps {
+interface ReminderProps {
   collection: NftCollectionType;
 }
 
-const Collection: NextPageWithLayout<CollectionProps> = ({ collection }) => {
+const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
+  const [email, setName] = useState<string>("");
+
+  const [createReminder, { data, loading, error }] =
+    useCreateReminderMutation();
+
   return (
     <>
       <Header text={collection.name} />
 
-      <Button text="Edit" href={`/${collection.name}/edit`} />
-      <Button text="Remind me" href={`/${collection.name}/reminder`}/>
-      <BackButton href="/" />
+      <div>
+        <Header text="EMAIL" />
+        <TextInput placeholder="Enter email" value={email} setValue={setName} />
+      </div>
+
+      <Button
+        text="Confirm"
+        onClick={() => {
+          createReminder({
+            variables: {
+              email,
+              collection: collection.uuid,
+            },
+          });
+        }}
+        disabled={loading}
+      />
+      <BackButton href={`/${collection.name}`} />
     </>
   );
 };
 
-Collection.getLayout = function getLayout(page: ReactElement) {
+Reminder.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>;
 };
 
@@ -57,4 +79,4 @@ export const getServerSideProps = async ({
   });
 };
 
-export default Collection;
+export default Reminder;

@@ -57,3 +57,4 @@ npx tailwind init
 ## Todo
 
 - Add arrow back button to layout
+- Check if email is legit (BE & FE)

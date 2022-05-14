@@ -4,17 +4,19 @@ interface ButtonProps {
   text: string;
   href?: string;
   onClick?: () => void;
+  disabled?: boolean
 }
 
-const Button = ({ text, href, onClick }: ButtonProps) => {
+const Button = ({ text, href, onClick, disabled = false }: ButtonProps) => {
   const styledButton = (
     <button
       type="button"
       className="border rounded border-carbon hover:text-cotton hover:bg-carbon text-carbon p-0.5 mr-1.5 pl-1.5 pr-1.5 w-full"
       onClick={onClick}
+      disabled={disabled}
     >
       <p className="font-NeueMontreal tablet:text-14px tablet:leading-18px  laptop:text-20px laptop:leading-24px  desktop:text-24px desktop:leading-26px">
-        {text}
+        {text.toUpperCase()}
       </p>
     </button>
   );
