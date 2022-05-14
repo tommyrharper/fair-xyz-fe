@@ -21,11 +21,9 @@ const Collection: NextPageWithLayout<CollectionProps> = ({ collection }) => {
     <>
       <Header text={collection.name} />
 
-      <div className="flex-col items-center justify-center">
-        <Button text="Edit" href={`/${collection.name}/edit`} />
-        <Button text="Set reminder" />
-        <BackButton />
-      </div>
+      <Button text="Edit" href={`/${collection.name}/edit`} />
+      <Button text="Set reminder" />
+      <BackButton />
     </>
   );
 };

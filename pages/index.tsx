@@ -17,17 +17,15 @@ const Home: NextPageWithLayout<{}> = () => {
     <>
       <Header text="Manage your collections" />
 
-      <div className="flex-col items-center justify-center">
-        {data?.getNFTCollections.map((collection) => {
-          return (
-            <Button
-              text={collection.name}
-              href={`/${collection.name}`}
-              key={collection.uuid}
-            />
-          );
-        })}
-      </div>
+      {data?.getNFTCollections.map((collection) => {
+        return (
+          <Button
+            text={collection.name}
+            href={`/${collection.name}`}
+            key={collection.uuid}
+          />
+        );
+      })}
     </>
   );
 };
