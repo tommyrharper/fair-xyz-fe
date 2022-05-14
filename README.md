@@ -53,3 +53,7 @@ npx tailwind init
 ```
 - create `postcss.config.js`
 - import `../styles/index.css` instead of `../styles/globals.css`
+
+## Todo
+
+- Add arrow back button to layout
