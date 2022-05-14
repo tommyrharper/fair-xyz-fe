@@ -1,0 +1,7 @@
+query GetNFTCollections {
+  getNFTCollections {
+    uuid
+    name
+    launchDate
+  }
+}

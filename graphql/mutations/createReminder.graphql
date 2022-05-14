@@ -1,0 +1,11 @@
+mutation CreateReminder($email: String!, $collection: String!) {
+  createReminder(email: $email, collection: $collection) {
+    uuid
+    email
+    collection {
+      uuid
+      name
+      launchDate
+    }
+  }
+}

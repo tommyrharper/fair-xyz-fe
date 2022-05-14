@@ -1,26 +1,15 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import type { GetServerSidePropsContext, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { GetNftCollectionsDocument, useGetNftCollectionsQuery } from "../generated/graphql";
 import { addApolloState, initializeApollo } from "../lib/apolloClient";
 import styles from "../styles/Home.module.css";
 
-const getNFTCollections = gql`
-  query {
-    getNFTCollections {
-      uuid
-      name
-      launchDate
-    }
-  }
-`;
-
 const Home: NextPage = () => {
-  const { loading, data } = useQuery(getNFTCollections, {
-    notifyOnNetworkStatusChange: true,
-  });
+  const { loading, data } = useGetNftCollectionsQuery();
 
-  console.log("data", loading, data);
+  console.log("data", loading, data?.getNFTCollections);
 
   return (
     <div className={styles.container}>
@@ -92,7 +81,7 @@ export const getServerSideProps = async ({
 }: GetServerSidePropsContext) => {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query({ query: getNFTCollections });
+  await apolloClient.query({ query: GetNftCollectionsDocument });
 
   return addApolloState(apolloClient, {
     props: {},

@@ -26,5 +26,20 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 ```bash
 npm i @apollo/client lodash deepmerge
 npm i -D @types/lodash
+npm i -D ts-node @graphql-codegen/cli
 ```
 3. Added types to `apolloClient.ts` and remove example specific logic.
+4. Setup apollo provider.
+5. Setup codegen:
+```
+npx graphql-codegen init
+> React
+> http://localhost:8000/graphql
+> graphql/**/*.graphql
+> TypeScript/TypeScript Operations/TypeScript React Apollo
+> generated/graphql.tsx
+> No
+> codegen.yml
+> generate
+```
+6. `npm run generate`
