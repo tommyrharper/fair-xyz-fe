@@ -1,25 +1,16 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
 import {
   GetNftCollectionDocument,
-  useGetNftCollectionQuery,
   NftCollectionType,
   GetNftCollectionQuery,
 } from "../generated/graphql";
 import { addApolloState, initializeApollo } from "../lib/apolloClient";
 
 interface CollectionProps {
-  name: string;
+  collection: NftCollectionType;
 }
 
-const Collection: NextPage<CollectionProps> = ({ name }) => {
-  const { data } = useGetNftCollectionQuery({
-    variables: {
-      name,
-    },
-  });
-
-  const collection = data?.getNFTCollection;
-
+const Collection: NextPage<CollectionProps> = ({ collection }) => {
   return (
     <div className="bg-neutral-50 h-screen">
       <div className="flex mb-4 justify-center items-center h-3/4">
@@ -51,11 +42,9 @@ const Collection: NextPage<CollectionProps> = ({ name }) => {
 };
 
 export const getServerSideProps = async ({
-  query: { id },
+  query: { name },
 }: GetServerSidePropsContext) => {
   const apolloClient = initializeApollo();
-
-  const name = id;
 
   const { data } = await apolloClient.query<GetNftCollectionQuery>({
     query: GetNftCollectionDocument,
@@ -64,14 +53,16 @@ export const getServerSideProps = async ({
     },
   });
 
-  if (!data?.getNFTCollection) {
+  const collection = data?.getNFTCollection;
+
+  if (!collection) {
     return {
       notFound: true,
     };
   }
 
   return addApolloState(apolloClient, {
-    props: { name },
+    props: { collection },
   });
 };
 
