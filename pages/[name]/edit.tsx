@@ -1,7 +1,6 @@
-import type { GetServerSidePropsContext, NextPage } from "next";
-import Link from "next/link";
+import type { GetServerSidePropsContext } from "next";
 import { ReactElement } from "react";
-import Button from "../../components/button";
+import BackButton from "../../components/back-button";
 import Header from "../../components/header";
 import {
   GetNftCollectionDocument,
@@ -24,7 +23,7 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
       <Header text={collection.name} />
 
       <div className="flex-col items-center justify-center">
-        <Button text="Back" href={`/${collection.name}`} />
+        <BackButton />
       </div>
     </>
   );

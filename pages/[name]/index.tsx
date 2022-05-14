@@ -1,5 +1,6 @@
-import type { GetServerSidePropsContext, NextPage } from "next";
+import type { GetServerSidePropsContext } from "next";
 import { ReactElement } from "react";
+import BackButton from "../../components/back-button";
 import Button from "../../components/button";
 import Header from "../../components/header";
 import {
@@ -23,7 +24,7 @@ const Collection: NextPageWithLayout<CollectionProps> = ({ collection }) => {
       <div className="flex-col items-center justify-center">
         <Button text="Edit" href={`/${collection.name}/edit`} />
         <Button text="Set reminder" />
-        <Button text="Back" href="/" />
+        <BackButton />
       </div>
     </>
   );
