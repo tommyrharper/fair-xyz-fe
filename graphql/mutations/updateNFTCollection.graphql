@@ -1,0 +1,11 @@
+mutation UpdateNFTCollection(
+  $uuid: String!
+  $name: String
+  $launchDate: DateTime
+) {
+  updateNFTCollection(uuid: $uuid, name: $name, launchDate: $launchDate) {
+    uuid
+    name
+    launchDate
+  }
+}

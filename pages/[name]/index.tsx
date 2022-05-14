@@ -23,7 +23,7 @@ const Collection: NextPageWithLayout<CollectionProps> = ({ collection }) => {
 
       <Button text="Edit" href={`/${collection.name}/edit`} />
       <Button text="Set reminder" />
-      <BackButton />
+      <BackButton href="/" />
     </>
   );
 };

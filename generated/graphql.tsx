@@ -73,6 +73,15 @@ export type CreateReminderMutationVariables = Exact<{
 
 export type CreateReminderMutation = { __typename?: 'Mutation', createReminder: { __typename?: 'ReminderType', uuid: string, email: string, collection: { __typename?: 'NFTCollectionType', uuid: string, name: string, launchDate?: any | null } } };
 
+export type UpdateNftCollectionMutationVariables = Exact<{
+  uuid: Scalars['String'];
+  name?: InputMaybe<Scalars['String']>;
+  launchDate?: InputMaybe<Scalars['DateTime']>;
+}>;
+
+
+export type UpdateNftCollectionMutation = { __typename?: 'Mutation', updateNFTCollection: { __typename?: 'NFTCollectionType', uuid: string, name: string, launchDate?: any | null } };
+
 export type GetNftCollectionQueryVariables = Exact<{
   name: Scalars['String'];
 }>;
@@ -126,6 +135,43 @@ export function useCreateReminderMutation(baseOptions?: Apollo.MutationHookOptio
 export type CreateReminderMutationHookResult = ReturnType<typeof useCreateReminderMutation>;
 export type CreateReminderMutationResult = Apollo.MutationResult<CreateReminderMutation>;
 export type CreateReminderMutationOptions = Apollo.BaseMutationOptions<CreateReminderMutation, CreateReminderMutationVariables>;
+export const UpdateNftCollectionDocument = gql`
+    mutation UpdateNFTCollection($uuid: String!, $name: String, $launchDate: DateTime) {
+  updateNFTCollection(uuid: $uuid, name: $name, launchDate: $launchDate) {
+    uuid
+    name
+    launchDate
+  }
+}
+    `;
+export type UpdateNftCollectionMutationFn = Apollo.MutationFunction<UpdateNftCollectionMutation, UpdateNftCollectionMutationVariables>;
+
+/**
+ * __useUpdateNftCollectionMutation__
+ *
+ * To run a mutation, you first call `useUpdateNftCollectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateNftCollectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateNftCollectionMutation, { data, loading, error }] = useUpdateNftCollectionMutation({
+ *   variables: {
+ *      uuid: // value for 'uuid'
+ *      name: // value for 'name'
+ *      launchDate: // value for 'launchDate'
+ *   },
+ * });
+ */
+export function useUpdateNftCollectionMutation(baseOptions?: Apollo.MutationHookOptions<UpdateNftCollectionMutation, UpdateNftCollectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateNftCollectionMutation, UpdateNftCollectionMutationVariables>(UpdateNftCollectionDocument, options);
+      }
+export type UpdateNftCollectionMutationHookResult = ReturnType<typeof useUpdateNftCollectionMutation>;
+export type UpdateNftCollectionMutationResult = Apollo.MutationResult<UpdateNftCollectionMutation>;
+export type UpdateNftCollectionMutationOptions = Apollo.BaseMutationOptions<UpdateNftCollectionMutation, UpdateNftCollectionMutationVariables>;
 export const GetNftCollectionDocument = gql`
     query GetNFTCollection($name: String!) {
   getNFTCollection(name: $name) {
