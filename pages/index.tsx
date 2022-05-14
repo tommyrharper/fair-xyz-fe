@@ -1,5 +1,5 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
-import Link from "next/link";
+import Button from "../components/button";
 import {
   GetNftCollectionsDocument,
   useGetNftCollectionsQuery,
@@ -23,18 +23,11 @@ const Home: NextPage = () => {
             <div className="flex-col items-center justify-center">
               {data?.getNFTCollections.map((collection) => {
                 return (
-                  <div className="mt-1.5 w-full" key={collection.uuid}>
-                    <Link href={`/${collection.name}`}>
-                      <button
-                        type="button"
-                        className="border rounded border-carbon hover:text-cotton hover:bg-carbon text-carbon p-0.5 mr-1.5 pl-1.5 pr-1.5 w-full"
-                      >
-                        <p className="font-NeueMontreal tablet:text-14px tablet:leading-18px  laptop:text-20px laptop:leading-24px  desktop:text-24px desktop:leading-26px">
-                          {collection.name}
-                        </p>
-                      </button>
-                    </Link>
-                  </div>
+                  <Button
+                    text={collection.name}
+                    href={`/${collection.name}`}
+                    key={collection.uuid}
+                  />
                 );
               })}
             </div>
