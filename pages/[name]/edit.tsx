@@ -1,18 +1,18 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
 import Link from "next/link";
-import Button from "../components/button";
+import Button from "../../components/button";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
   GetNftCollectionQuery,
-} from "../generated/graphql";
-import { addApolloState, initializeApollo } from "../lib/apolloClient";
+} from "../../generated/graphql";
+import { addApolloState, initializeApollo } from "../../lib/apolloClient";
 
-interface CollectionProps {
+interface EditCollectionProps {
   collection: NftCollectionType;
 }
 
-const Collection: NextPage<CollectionProps> = ({ collection }) => {
+const EditCollection: NextPage<EditCollectionProps> = ({ collection }) => {
   return (
     <div className="bg-neutral-50 h-screen">
       <div className="flex mb-4 justify-center items-center h-3/4">
@@ -25,9 +25,7 @@ const Collection: NextPage<CollectionProps> = ({ collection }) => {
             </div>
 
             <div className="flex-col items-center justify-center">
-              <Button text="Edit" href={`/${collection.name}/edit`}/>
-              <Button text="Set reminder" />
-              <Button text="Back" href="/" />
+              <Button text="Back" href={`/${collection.name}`} />
             </div>
           </div>
         </div>
@@ -61,4 +59,4 @@ export const getServerSideProps = async ({
   });
 };
 
-export default Collection;
+export default EditCollection;
