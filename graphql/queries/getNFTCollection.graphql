@@ -1,0 +1,7 @@
+query GetNFTCollection($name: String!) {
+  getNFTCollection(name: $name) {
+    uuid
+    name
+    launchDate
+  }
+}

@@ -1,16 +1,12 @@
-import { gql } from "@apollo/client";
 import type { GetServerSidePropsContext, NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import {
   GetNftCollectionsDocument,
   useGetNftCollectionsQuery,
 } from "../generated/graphql";
 import { addApolloState, initializeApollo } from "../lib/apolloClient";
-import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const { loading, data } = useGetNftCollectionsQuery();
+  const { data } = useGetNftCollectionsQuery();
 
   return (
     <div className="bg-neutral-50 h-screen">
@@ -19,7 +15,9 @@ const Home: NextPage = () => {
         <div className="rounded overflow-hidden shadow-lg bg-cotton w-1/3">
           <div className="px-6 py-4">
 
-            <div className="font-bold text-xl mb-2 text-center">Manage your collections</div>
+            {/* <div className="font-bold text-xl mb-2 text-center">Manage your collections</div> */}
+
+            <div className="font-NeueMontreal tablet:text-28px tablet:leading-34px laptop:text-33px laptop:leading-38px  desktop:text-40px desktop:leading-45px text-carbon inline mr-25">Manage your collections</div>
 
             <div className="flex-col items-center justify-center">
               {data?.getNFTCollections.map((collection) => {

@@ -47,7 +47,13 @@ export type NftCollectionType = {
 
 export type Query = {
   __typename?: 'Query';
+  getNFTCollection: NftCollectionType;
   getNFTCollections: Array<NftCollectionType>;
+};
+
+
+export type QueryGetNftCollectionArgs = {
+  name: Scalars['String'];
 };
 
 export type ReminderType = {
@@ -66,6 +72,13 @@ export type CreateReminderMutationVariables = Exact<{
 
 
 export type CreateReminderMutation = { __typename?: 'Mutation', createReminder: { __typename?: 'ReminderType', uuid: string, email: string, collection: { __typename?: 'NFTCollectionType', uuid: string, name: string, launchDate?: any | null } } };
+
+export type GetNftCollectionQueryVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+
+export type GetNftCollectionQuery = { __typename?: 'Query', getNFTCollection: { __typename?: 'NFTCollectionType', uuid: string, name: string, launchDate?: any | null } };
 
 export type GetNftCollectionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -113,6 +126,43 @@ export function useCreateReminderMutation(baseOptions?: Apollo.MutationHookOptio
 export type CreateReminderMutationHookResult = ReturnType<typeof useCreateReminderMutation>;
 export type CreateReminderMutationResult = Apollo.MutationResult<CreateReminderMutation>;
 export type CreateReminderMutationOptions = Apollo.BaseMutationOptions<CreateReminderMutation, CreateReminderMutationVariables>;
+export const GetNftCollectionDocument = gql`
+    query GetNFTCollection($name: String!) {
+  getNFTCollection(name: $name) {
+    uuid
+    name
+    launchDate
+  }
+}
+    `;
+
+/**
+ * __useGetNftCollectionQuery__
+ *
+ * To run a query within a React component, call `useGetNftCollectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetNftCollectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetNftCollectionQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useGetNftCollectionQuery(baseOptions: Apollo.QueryHookOptions<GetNftCollectionQuery, GetNftCollectionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetNftCollectionQuery, GetNftCollectionQueryVariables>(GetNftCollectionDocument, options);
+      }
+export function useGetNftCollectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNftCollectionQuery, GetNftCollectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetNftCollectionQuery, GetNftCollectionQueryVariables>(GetNftCollectionDocument, options);
+        }
+export type GetNftCollectionQueryHookResult = ReturnType<typeof useGetNftCollectionQuery>;
+export type GetNftCollectionLazyQueryHookResult = ReturnType<typeof useGetNftCollectionLazyQuery>;
+export type GetNftCollectionQueryResult = Apollo.QueryResult<GetNftCollectionQuery, GetNftCollectionQueryVariables>;
 export const GetNftCollectionsDocument = gql`
     query GetNFTCollections {
   getNFTCollections {
