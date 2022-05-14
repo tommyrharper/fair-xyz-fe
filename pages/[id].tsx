@@ -2,6 +2,8 @@ import type { GetServerSidePropsContext, NextPage } from "next";
 import {
   GetNftCollectionDocument,
   useGetNftCollectionQuery,
+  NftCollectionType,
+  GetNftCollectionQuery,
 } from "../generated/graphql";
 import { addApolloState, initializeApollo } from "../lib/apolloClient";
 
@@ -55,12 +57,18 @@ export const getServerSideProps = async ({
 
   const name = id;
 
-  await apolloClient.query({
+  const { data } = await apolloClient.query<GetNftCollectionQuery>({
     query: GetNftCollectionDocument,
     variables: {
       name,
     },
   });
+
+  if (!data?.getNFTCollection) {
+    return {
+      notFound: true,
+    };
+  }
 
   return addApolloState(apolloClient, {
     props: { name },

@@ -47,7 +47,7 @@ export type NftCollectionType = {
 
 export type Query = {
   __typename?: 'Query';
-  getNFTCollection: NftCollectionType;
+  getNFTCollection?: Maybe<NftCollectionType>;
   getNFTCollections: Array<NftCollectionType>;
 };
 
@@ -78,7 +78,7 @@ export type GetNftCollectionQueryVariables = Exact<{
 }>;
 
 
-export type GetNftCollectionQuery = { __typename?: 'Query', getNFTCollection: { __typename?: 'NFTCollectionType', uuid: string, name: string, launchDate?: any | null } };
+export type GetNftCollectionQuery = { __typename?: 'Query', getNFTCollection?: { __typename?: 'NFTCollectionType', uuid: string, name: string, launchDate?: any | null } | null };
 
 export type GetNftCollectionsQueryVariables = Exact<{ [key: string]: never; }>;
 
