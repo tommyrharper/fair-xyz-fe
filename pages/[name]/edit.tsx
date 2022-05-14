@@ -2,6 +2,7 @@ import type { GetServerSidePropsContext, NextPage } from "next";
 import Link from "next/link";
 import { ReactElement } from "react";
 import Button from "../../components/button";
+import Header from "../../components/header";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
@@ -20,9 +21,7 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
 }) => {
   return (
     <>
-      <div className="font-NeueMontreal tablet:text-28px tablet:leading-34px laptop:text-33px laptop:leading-38px  desktop:text-40px desktop:leading-45px text-carbon inline mr-25">
-        {collection.name}
-      </div>
+      <Header text={collection.name} />
 
       <div className="flex-col items-center justify-center">
         <Button text="Back" href={`/${collection.name}`} />

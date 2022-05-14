@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Link from "next/link";
 
 interface ButtonProps {
@@ -6,7 +5,7 @@ interface ButtonProps {
   href?: string;
 }
 
-const Button: NextPage<ButtonProps> = ({ text, href }) => {
+const Button = ({ text, href }: ButtonProps) => {
   const styledButton = (
     <button
       type="button"

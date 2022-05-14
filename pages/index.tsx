@@ -1,6 +1,7 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
 import { ReactElement } from "react";
 import Button from "../components/button";
+import Header from "../components/header";
 import {
   GetNftCollectionsDocument,
   useGetNftCollectionsQuery,
@@ -14,9 +15,7 @@ const Home: NextPageWithLayout<{}> = () => {
 
   return (
     <>
-      <div className="font-NeueMontreal tablet:text-28px tablet:leading-34px laptop:text-33px laptop:leading-38px  desktop:text-40px desktop:leading-45px text-carbon inline mr-25">
-        Manage your collections
-      </div>
+      <Header text="Manage your collections" />
 
       <div className="flex-col items-center justify-center">
         {data?.getNFTCollections.map((collection) => {
