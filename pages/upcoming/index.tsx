@@ -1,5 +1,9 @@
+import { ReactElement } from "react";
 import BigButton from "../../components/big-button";
+import CollectionButtonList from "../../components/upcoming/collection-button-list";
 import { useGetNftCollectionsQuery } from "../../generated/graphql";
+import { DefaultLayout } from "../../layouts/default";
+import { GridContainer } from "../../layouts/grid-container";
 import { getCollectionsForServerSideProps } from "../../utils";
 import { NextPageWithLayout } from "../../utils/types";
 
@@ -7,24 +11,15 @@ const Upcoming: NextPageWithLayout<{}> = () => {
   const { data } = useGetNftCollectionsQuery();
 
   return (
-    <div className="bg-neutral-50 h-screen">
-      <div className="grid grid-cols-1 h-full divide-y-2">
-        {data?.getNFTCollections
-          .slice()
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map((collection) => {
-            return (
-              <BigButton
-                text={collection.name}
-                href={`upcoming/${collection.name}`}
-                key={collection.uuid}
-              />
-            );
-          })}
-        <BigButton text="Back" href="/" />
-      </div>
-    </div>
+    <GridContainer>
+      <CollectionButtonList collectionsQueryData={data} />
+      <BigButton text="Back" href="/" />
+    </GridContainer>
   );
+};
+
+Upcoming.getLayout = (page: ReactElement) => {
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export const getServerSideProps = getCollectionsForServerSideProps;
