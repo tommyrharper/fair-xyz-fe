@@ -29,7 +29,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
     <div className="my-2.5">
       <span className="font-NeueMontreal tablet:text-28px tablet:leading-34px laptop:text-33px laptop:leading-38px  desktop:text-40px desktop:leading-45px text-carbon">
         Get reminded about{" "}
-        <span className="font-semibold">{collection.name}</span>
+        <span className="font-NeueMontreal-medium">{collection.name}</span>
       </span>
 
       <div>
