@@ -1,12 +1,13 @@
 interface ReminderHeaderProps {
+  start: string;
   name: string;
 }
 
-const ReminderHeader = ({ name }: ReminderHeaderProps) => {
+const ReminderHeader = ({ start, name }: ReminderHeaderProps) => {
   return (
     <div className="mb-4">
       <span className="text-carbon text-lg">
-        Get reminded about{" "}
+        {start}{" "}
         <span className="font-NeueMontreal-medium">{name}</span>
       </span>
     </div>

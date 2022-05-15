@@ -1,10 +1,5 @@
-import type { GetServerSidePropsContext } from "next";
 import BigButton from "../../components/big-button";
-import {
-  GetNftCollectionsDocument,
-  useGetNftCollectionsQuery,
-} from "../../generated/graphql";
-import { addApolloState, initializeApollo } from "../../lib/apolloClient";
+import { useGetNftCollectionsQuery } from "../../generated/graphql";
 import { getCollectionsForServerSideProps } from "../../utils";
 import { NextPageWithLayout } from "../../utils/types";
 

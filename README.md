@@ -61,4 +61,6 @@ npx tailwind init
   - Elegantly handle duplicate emails
 - Update routes to use router.push etc.
 - delete unused fonts
-- refactor shared getServerSideProps functions
+- remove default layout
+- clean edit.tsx
+- rename reminder header

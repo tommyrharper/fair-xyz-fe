@@ -2,14 +2,20 @@ import router from "next/router";
 import { ReactElement, useState } from "react";
 import BackButton from "../../../components/back-button";
 import Button from "../../../components/button";
+import Divider from "../../../components/reminder/divider";
+import Input from "../../../components/reminder/input";
+import ReminderHeader from "../../../components/reminder/reminder-header";
 import TextInput from "../../../components/text-input";
 import {
   NftCollectionType,
   useUpdateNftCollectionMutation,
   InputMaybe,
 } from "../../../generated/graphql";
-import { DefaultLayout } from "../../../layouts/default";
-import { getCollectionForServerSideProps, getDateInputString } from "../../../utils";
+import { ReminderLayout } from "../../../layouts/reminder-layout";
+import {
+  getCollectionForServerSideProps,
+  getDateInputString,
+} from "../../../utils";
 import { NextPageWithLayout } from "../../../utils/types";
 
 interface UpdateNftCollectionArgs {
@@ -36,59 +42,62 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
 
   return (
     <>
-      {/* <Header text={collection.name} /> */}
+      <ReminderHeader start="Edit" name={collection.name} />
 
-      <TextInput
-        placeholder={collection.name}
-        value={name}
-        setValue={setName}
-      />
+      <Input label="Name" setValue={setName} value={name} />
 
-      <div className="w-full mt-3 mb-4">
+      <>
+        <div className="text-sm text-carbon">LAUNCH DATE</div>
+
         <input
+          className="px-2 py-2.5 mt-2 mb-5 w-full focus:outline-none bg-cotton border border-mid-gray placeholder-mid-gray placeholder-opacity-70 transition-all duration-1500 outline-none"
           type="date"
           value={launchDate}
           onChange={(e) => {
             if (!dateUpdated) setDateUpdated(true);
             setLaunchDate(e.target.value);
           }}
-          className="w-full flex-1 font-NeueMontreal focus:outline-none bg-cotton border-b border-black placeholder-mid_gray placeholder-opacity-70  tablet:placeholder-14px tablet:h-8 laptop:placeholder-18px laptop:h-9 desktop:placeholder-22px transition-all duration-1500 outline-none"
         />
+      </>
+
+      <div className="flex justify-end mt-2">
+        <div className="w-1/2 mr-3">
+          <Button
+            text="Back"
+            onClick={() => {
+              router.push(
+                `/upcoming/${data?.updateNFTCollection.name || collection.name}`
+              );
+            }}
+            disabled={loading}
+          />
+        </div>
+        <div className="w-1/2 ml-3">
+          <Button
+            text="Confirm"
+            onClick={() => {
+              const variables: UpdateNftCollectionArgs = {
+                uuid: collection.uuid,
+              };
+              if (dateUpdated)
+                variables.launchDate = launchDate ? launchDate : null;
+              if (name && name !== collection.name) variables.name = name;
+
+              updateNftCollectionMutation({
+                variables,
+              });
+              router.push(`/upcoming`);
+            }}
+            disabled={loading}
+          />
+        </div>
       </div>
-
-      {/* <input
-        type="date"
-        id="start"
-        name="trip-start"
-        value="2018-07-22"
-        min="2018-01-01"
-        max="2018-12-31"
-      ></input> */}
-
-      <Button
-        text="Save"
-        onClick={() => {
-          const variables: UpdateNftCollectionArgs = { uuid: collection.uuid };
-          if (dateUpdated)
-            variables.launchDate = launchDate ? launchDate : null;
-          if (name && name !== collection.name) variables.name = name;
-
-          updateNftCollectionMutation({
-            variables,
-          });
-          router.push(`/upcoming`);
-        }}
-        disabled={loading}
-      />
-      <BackButton
-        href={`/upcoming/${data?.updateNFTCollection.name || collection.name}`}
-      />
     </>
   );
 };
 
 EditCollection.getLayout = function getLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
+  return <ReminderLayout>{page}</ReminderLayout>;
 };
 
 export const getServerSideProps = getCollectionForServerSideProps;

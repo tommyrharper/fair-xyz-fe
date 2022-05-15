@@ -19,7 +19,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
 
   return (
     <>
-      <ReminderHeader name={collection.name} />
+      <ReminderHeader start="Get reminded about" name={collection.name} />
       <Input label="Email" setValue={setEmail} value={email} />
       <TermsAndConditions agreed={agreed} setAgreed={setAgreed} />
       <Divider />
