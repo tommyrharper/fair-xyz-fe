@@ -12,37 +12,8 @@ import { DefaultLayout } from "../../layouts/default";
 import { NextPageWithLayout } from "../../utils/types";
 import nft from "../../public/nft.png";
 import Cursor from "../../components/cursor";
+import RevealImage from "../../components/reveal-image";
 
-interface RevealImageProps {
-  setShowCursor: Dispatch<SetStateAction<boolean>>;
-}
-
-const RevealImage = ({ setShowCursor }: RevealImageProps) => {
-  const [visible, setVisible] = useState<boolean>(false);
-
-  return (
-    <div className="mx-9">
-      <div
-        className="cursor-pointer"
-        onMouseEnter={() => {
-          setShowCursor(true);
-        }}
-        onMouseLeave={() => {
-          setShowCursor(false);
-        }}
-      >
-        <Image
-          src={nft}
-          alt="loading"
-          className={`transition-all duration-1500 ${visible ? "" : "blur-lg"}`}
-          onClick={() => {
-            setVisible(true);
-          }}
-        />
-      </div>
-    </div>
-  );
-};
 
 const Reveal: NextPageWithLayout<{}> = () => {
   const [showCursor, setShowCursor] = useState<boolean>(false);
