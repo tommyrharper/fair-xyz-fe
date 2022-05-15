@@ -8,26 +8,24 @@ const RevealImage = () => {
   const [showCursor, setShowCursor] = useState<boolean>(false);
 
   return (
-    <div className="mx-9">
-      <div
-        className={blur ? "cursor-pointer" : undefined}
-        onMouseMove={() => {
-          setShowCursor(true);
+    <div
+      className={`mx-9 ${blur ? "cursor-pointer" : ""}`}
+      onMouseMove={() => {
+        setShowCursor(true);
+      }}
+      onMouseOut={() => {
+        setShowCursor(false);
+      }}
+    >
+      {showCursor && blur && <Cursor />}
+      <Image
+        src={nft}
+        alt="loading"
+        className={`transition-all duration-1500 ${blur ? "blur-lg" : ""}`}
+        onClick={() => {
+          setBlur(false);
         }}
-        onMouseOut={() => {
-          setShowCursor(false);
-        }}
-      >
-        {showCursor && blur && <Cursor />}
-        <Image
-          src={nft}
-          alt="loading"
-          className={`transition-all duration-1500 ${blur ? "blur-lg" : ""}`}
-          onClick={() => {
-            setBlur(false);
-          }}
-        />
-      </div>
+      />
     </div>
   );
 };

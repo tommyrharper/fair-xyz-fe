@@ -9,6 +9,7 @@ const Cursor = () => {
       setXCoord(event.pageX);
       setYCoord(event.pageY);
     };
+
     document.addEventListener("mousemove", handleMouseMove);
 
     return () => document.removeEventListener("mousemove", handleMouseMove);
@@ -19,7 +20,7 @@ const Cursor = () => {
       className="absolute -translate-x-2/4 -translate-y-full z-10 mix-blend-difference text-white"
       style={{ top: yCoord, left: xCoord, pointerEvents: "none" }}
     >
-      <div>CLICK TO REVEAL</div>
+      CLICK TO REVEAL
     </div>
   );
 };
