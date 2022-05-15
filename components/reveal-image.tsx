@@ -12,15 +12,11 @@ const RevealImage = () => {
     <div className="mx-9">
       <div
         className={!visible ? "cursor-pointer" : undefined}
-        onMouseEnter={() => {
-          if (!showCursor) {
-            setShowCursor(true);
-          }
+        onMouseMove={() => {
+          setShowCursor(true);
         }}
         onMouseOut={() => {
-          if (showCursor) {
-            setShowCursor(false);
-          }
+          setShowCursor(false);
         }}
       >
         {showCursor && !visible && <Cursor />}
