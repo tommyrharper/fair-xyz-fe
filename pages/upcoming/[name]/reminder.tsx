@@ -2,6 +2,8 @@ import type { GetServerSidePropsContext } from "next";
 import router, { useRouter } from "next/router";
 import { ReactElement, useState } from "react";
 import Button from "../../../components/button";
+import Input from "../../../components/reminder/input";
+import ReminderHeader from "../../../components/reminder/reminder-header";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
@@ -17,7 +19,7 @@ interface ReminderProps {
 }
 
 const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
-  const [email, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [agreed, setAgreed] = useState<boolean>(false);
 
   const [createReminder, { data, loading, error }] =
@@ -25,22 +27,8 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
 
   return (
     <div>
-      <div className="mb-4">
-        <span className="text-carbon text-lg">
-          Get reminded about{" "}
-          <span className="font-NeueMontreal-medium">{collection.name}</span>
-        </span>
-      </div>
-
-      <div className="text-sm text-carbon">EMAIL*</div>
-
-      <input
-        className="px-2 py-2.5 mt-2 mb-5 w-full focus:outline-none bg-cotton border border-mid-gray placeholder-mid-gray placeholder-opacity-70 transition-all duration-1500 outline-none"
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-        value={email}
-      />
+      <ReminderHeader name={collection.name} />
+      <Input label="Email" setValue={setEmail} value={email} />
 
       <div className="font-RobotoMono text-sm text-carbon mt-2 mb-3.5 flex justify-start items-center">
         AGREE TO OUR TERMS AND CONDITIONS
