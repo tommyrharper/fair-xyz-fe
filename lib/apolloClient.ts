@@ -20,7 +20,16 @@ function createApolloClient() {
       uri: "http://localhost:8000/graphql", // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        NFTCollectionType: {
+          keyFields: ["uuid"],
+        },
+        ReminderType: {
+          keyFields: ["uuid"],
+        },
+      },
+    }),
   });
 }
 
