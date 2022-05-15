@@ -1,5 +1,6 @@
 import type { GetServerSidePropsContext } from "next";
 import { ReactElement } from "react";
+import BackButton from "../../components/back-button";
 import Button from "../../components/button";
 import Header from "../../components/header";
 import {
@@ -10,7 +11,7 @@ import { DefaultLayout } from "../../layouts/default";
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
 import { NextPageWithLayout } from "../../utils/types";
 
-const Home: NextPageWithLayout<{}> = () => {
+const Upcoming: NextPageWithLayout<{}> = () => {
   const { data } = useGetNftCollectionsQuery();
 
   return (
@@ -26,11 +27,12 @@ const Home: NextPageWithLayout<{}> = () => {
           />
         );
       })}
+      <BackButton href="/" />
     </>
   );
 };
 
-Home.getLayout = function getLayout(page: ReactElement) {
+Upcoming.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>;
 };
 
@@ -46,4 +48,4 @@ export const getServerSideProps = async (
   });
 };
 
-export default Home;
+export default Upcoming;
