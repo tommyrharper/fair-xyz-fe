@@ -1,13 +1,9 @@
 import type { GetServerSidePropsContext } from "next";
-import { ReactElement } from "react";
-import BackButton from "../../components/back-button";
-import Button from "../../components/button";
-import Header from "../../components/header";
+import BigButton from "../../components/big-button";
 import {
   GetNftCollectionsDocument,
   useGetNftCollectionsQuery,
 } from "../../generated/graphql";
-import { DefaultLayout } from "../../layouts/default";
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
 import { NextPageWithLayout } from "../../utils/types";
 
@@ -15,25 +11,20 @@ const Upcoming: NextPageWithLayout<{}> = () => {
   const { data } = useGetNftCollectionsQuery();
 
   return (
-    <>
-      <Header text="Upcoming releases" />
-
-      {data?.getNFTCollections.map((collection) => {
-        return (
-          <Button
-            text={collection.name}
-            href={`upcoming/${collection.name}`}
-            key={collection.uuid}
-          />
-        );
-      })}
-      <BackButton href="/" />
-    </>
+    <div className="bg-neutral-50 h-screen">
+      <div className="grid grid-cols-1 h-full divide-y-2">
+        {data?.getNFTCollections.map((collection) => {
+          return (
+            <BigButton
+              text={collection.name}
+              href={`upcoming/${collection.name}`}
+              key={collection.uuid}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
-};
-
-Upcoming.getLayout = function getLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export const getServerSideProps = async (
