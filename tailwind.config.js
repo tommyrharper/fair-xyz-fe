@@ -11,6 +11,9 @@ module.exports = {
         'hard-cotton': "#F5F4F2",
         carbon: "#28282A",
       },
+      transitionDuration: {
+        '1500': '1500ms',
+      }
     },
   },
   variants: {},

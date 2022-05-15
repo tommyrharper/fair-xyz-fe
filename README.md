@@ -58,3 +58,4 @@ npx tailwind init
 
 - Add arrow back button to layout
 - Check if email is legit (BE & FE)
+- Update routes to use router.push etc.

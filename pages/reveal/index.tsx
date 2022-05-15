@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import Image from "next/Image";
 import BackButton from "../../components/back-button";
 import Header from "../../components/header";
@@ -7,9 +7,20 @@ import { NextPageWithLayout } from "../../utils/types";
 import nft from "../../public/nft.png";
 
 const NFTImage = () => {
+  const [visible, setVisible] = useState<boolean>(false);
+
   return (
     <div className="mx-9">
-      <Image src={nft} alt="loading" className="blur-lg" />
+      <div className="cursor-pointer">
+        <Image
+          src={nft}
+          alt="loading"
+          className={`transition-all duration-1500 ${visible ? "" : "blur-lg"}`}
+          onClick={() => {
+            setVisible(true);
+          }}
+        />
+      </div>
     </div>
   );
 };
