@@ -9,7 +9,7 @@ import {
   InputMaybe,
 } from "../../../generated/graphql";
 import { DefaultLayout } from "../../../layouts/default";
-import { getCollectionFromQueryName, getDateInputString } from "../../../utils";
+import { getCollectionForServerSideProps, getDateInputString } from "../../../utils";
 import { NextPageWithLayout } from "../../../utils/types";
 
 interface UpdateNftCollectionArgs {
@@ -91,6 +91,6 @@ EditCollection.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>;
 };
 
-export const getServerSideProps = getCollectionFromQueryName;
+export const getServerSideProps = getCollectionForServerSideProps;
 
 export default EditCollection;

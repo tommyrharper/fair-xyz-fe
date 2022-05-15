@@ -6,7 +6,7 @@ import ReminderHeader from "../../../components/reminder/reminder-header";
 import TermsAndConditions from "../../../components/reminder/terms-and-conditions";
 import { NftCollectionType } from "../../../generated/graphql";
 import { ReminderLayout } from "../../../layouts/reminder-layout";
-import { getCollectionFromQueryName } from "../../../utils";
+import { getCollectionForServerSideProps } from "../../../utils";
 import { NextPageWithLayout } from "../../../utils/types";
 
 interface ReminderProps {
@@ -36,6 +36,6 @@ Reminder.getLayout = function getLayout(page: ReactElement) {
   return <ReminderLayout>{page}</ReminderLayout>;
 };
 
-export const getServerSideProps = getCollectionFromQueryName;
+export const getServerSideProps = getCollectionForServerSideProps;
 
 export default Reminder;

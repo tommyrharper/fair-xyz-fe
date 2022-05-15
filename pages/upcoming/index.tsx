@@ -5,6 +5,7 @@ import {
   useGetNftCollectionsQuery,
 } from "../../generated/graphql";
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
+import { getCollectionsForServerSideProps } from "../../utils";
 import { NextPageWithLayout } from "../../utils/types";
 
 const Upcoming: NextPageWithLayout<{}> = () => {
@@ -31,16 +32,6 @@ const Upcoming: NextPageWithLayout<{}> = () => {
   );
 };
 
-export const getServerSideProps = async (
-  _serverSideContext: GetServerSidePropsContext
-) => {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({ query: GetNftCollectionsDocument });
-
-  return addApolloState(apolloClient, {
-    props: {},
-  });
-};
+export const getServerSideProps = getCollectionsForServerSideProps;
 
 export default Upcoming;

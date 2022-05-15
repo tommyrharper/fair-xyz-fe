@@ -3,13 +3,14 @@ import { GetServerSidePropsContext } from "next";
 import {
   GetNftCollectionQuery,
   GetNftCollectionDocument,
+  GetNftCollectionsDocument,
 } from "../generated/graphql";
 import { addApolloState, initializeApollo } from "../lib/apolloClient";
 
 export const getDateInputString = (date: Date | null): string =>
   date ? format(new Date(date), "yyyy-MM-d") : "";
 
-export const getCollectionFromQueryName = async ({
+export const getCollectionForServerSideProps = async ({
   query: { name },
 }: GetServerSidePropsContext) => {
   const apolloClient = initializeApollo();
@@ -31,5 +32,17 @@ export const getCollectionFromQueryName = async ({
 
   return addApolloState(apolloClient, {
     props: { collection },
+  });
+};
+
+export const getCollectionsForServerSideProps = async (
+  _serverSideContext: GetServerSidePropsContext
+) => {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({ query: GetNftCollectionsDocument });
+
+  return addApolloState(apolloClient, {
+    props: {},
   });
 };
