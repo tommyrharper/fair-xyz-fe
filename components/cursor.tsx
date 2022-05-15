@@ -16,7 +16,7 @@ const Cursor = () => {
 
   return (
     <div
-      className="absolute -translate-x-2/4 -translate-y-full z-10"
+      className="absolute -translate-x-2/4 -translate-y-full z-10 mix-blend-difference text-white"
       style={{ top: yCoord, left: xCoord, pointerEvents: "none" }}
     >
       <div>CLICK TO REVEAL</div>

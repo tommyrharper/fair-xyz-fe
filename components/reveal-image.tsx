@@ -4,7 +4,6 @@ import nft from "../public/nft.png";
 import Cursor from "./cursor";
 
 const RevealImage = () => {
-  // TODO: refactor blur to be blur
   const [blur, setBlur] = useState<boolean>(true);
   const [showCursor, setShowCursor] = useState<boolean>(false);
 
