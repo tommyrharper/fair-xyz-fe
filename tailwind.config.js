@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cotton: "#E5E5E5",
-        "hard-cotton": "#F5F4F2",
+        cotton: "#F5F4F2",
         carbon: "#28282A",
         "mid-gray": "#8C8B89",
+        white: "#FFFFFF",
       },
       transitionDuration: {
         1500: "1500ms",
