@@ -58,4 +58,6 @@ npx tailwind init
 
 - Add arrow back button to layout
 - Check if email is legit (BE & FE)
+  - Elegantly handle duplicate emails
 - Update routes to use router.push etc.
+- Remove extra div from reveal component
