@@ -1,21 +1,21 @@
 import { format } from "date-fns";
 import type { GetServerSidePropsContext } from "next";
 import { ReactElement, useState } from "react";
-import BackButton from "../../components/back-button";
-import Button from "../../components/button";
-import Header from "../../components/header";
-import TextInput from "../../components/text-input";
+import BackButton from "../../../components/back-button";
+import Button from "../../../components/button";
+import Header from "../../../components/header";
+import TextInput from "../../../components/text-input";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
   GetNftCollectionQuery,
   useUpdateNftCollectionMutation,
   InputMaybe,
-} from "../../generated/graphql";
-import { DefaultLayout } from "../../layouts/default";
-import { addApolloState, initializeApollo } from "../../lib/apolloClient";
-import { getDateInputString } from "../../utils";
-import { NextPageWithLayout } from "../../utils/types";
+} from "../../../generated/graphql";
+import { DefaultLayout } from "../../../layouts/default";
+import { addApolloState, initializeApollo } from "../../../lib/apolloClient";
+import { getDateInputString } from "../../../utils";
+import { NextPageWithLayout } from "../../../utils/types";
 
 interface UpdateNftCollectionArgs {
   uuid: string;
@@ -85,7 +85,7 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
         disabled={loading}
       />
       <BackButton
-        href={`/${data?.updateNFTCollection.name || collection.name}`}
+        href={`/upcoming/${data?.updateNFTCollection.name || collection.name}`}
       />
     </>
   );

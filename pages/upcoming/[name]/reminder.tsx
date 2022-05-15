@@ -1,18 +1,19 @@
 import type { GetServerSidePropsContext } from "next";
+import { useRouter } from "next/router";
 import { ReactElement, useState } from "react";
-import BackButton from "../../components/back-button";
-import Button from "../../components/button";
-import Header from "../../components/header";
-import TextInput from "../../components/text-input";
+import BackButton from "../../../components/back-button";
+import Button from "../../../components/button";
+import Header from "../../../components/header";
+import TextInput from "../../../components/text-input";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
   GetNftCollectionQuery,
   useCreateReminderMutation,
-} from "../../generated/graphql";
-import { DefaultLayout } from "../../layouts/default";
-import { addApolloState, initializeApollo } from "../../lib/apolloClient";
-import { NextPageWithLayout } from "../../utils/types";
+} from "../../../generated/graphql";
+import { DefaultLayout } from "../../../layouts/default";
+import { addApolloState, initializeApollo } from "../../../lib/apolloClient";
+import { NextPageWithLayout } from "../../../utils/types";
 
 interface ReminderProps {
   collection: NftCollectionType;
@@ -23,6 +24,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
 
   const [createReminder, { data, loading, error }] =
     useCreateReminderMutation();
+
 
   return (
     <>
@@ -45,7 +47,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
         }}
         disabled={loading}
       />
-      <BackButton href={`/${collection.name}`} />
+      <BackButton href={`/upcoming/${collection.name}`} />
     </>
   );
 };

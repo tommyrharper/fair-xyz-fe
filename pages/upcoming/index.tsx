@@ -1,27 +1,27 @@
-import type { GetServerSidePropsContext, NextPage } from "next";
+import type { GetServerSidePropsContext } from "next";
 import { ReactElement } from "react";
-import Button from "../components/button";
-import Header from "../components/header";
+import Button from "../../components/button";
+import Header from "../../components/header";
 import {
   GetNftCollectionsDocument,
   useGetNftCollectionsQuery,
-} from "../generated/graphql";
-import { DefaultLayout } from "../layouts/default";
-import { addApolloState, initializeApollo } from "../lib/apolloClient";
-import { NextPageWithLayout } from "../utils/types";
+} from "../../generated/graphql";
+import { DefaultLayout } from "../../layouts/default";
+import { addApolloState, initializeApollo } from "../../lib/apolloClient";
+import { NextPageWithLayout } from "../../utils/types";
 
 const Home: NextPageWithLayout<{}> = () => {
   const { data } = useGetNftCollectionsQuery();
 
   return (
     <>
-      <Header text="Manage your collections" />
+      <Header text="Upcoming releases" />
 
       {data?.getNFTCollections.map((collection) => {
         return (
           <Button
             text={collection.name}
-            href={`/${collection.name}`}
+            href={`upcoming/${collection.name}`}
             key={collection.uuid}
           />
         );

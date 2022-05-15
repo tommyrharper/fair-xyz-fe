@@ -1,16 +1,16 @@
 import type { GetServerSidePropsContext } from "next";
 import { ReactElement } from "react";
-import BackButton from "../../components/back-button";
-import Button from "../../components/button";
-import Header from "../../components/header";
+import BackButton from "../../../components/back-button";
+import Button from "../../../components/button";
+import Header from "../../../components/header";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
   GetNftCollectionQuery,
-} from "../../generated/graphql";
-import { DefaultLayout } from "../../layouts/default";
-import { addApolloState, initializeApollo } from "../../lib/apolloClient";
-import { NextPageWithLayout } from "../../utils/types";
+} from "../../../generated/graphql";
+import { DefaultLayout } from "../../../layouts/default";
+import { addApolloState, initializeApollo } from "../../../lib/apolloClient";
+import { NextPageWithLayout } from "../../../utils/types";
 
 interface CollectionProps {
   collection: NftCollectionType;
@@ -21,9 +21,9 @@ const Collection: NextPageWithLayout<CollectionProps> = ({ collection }) => {
     <>
       <Header text={collection.name} />
 
-      <Button text="Edit" href={`/${collection.name}/edit`} />
-      <Button text="Remind me" href={`/${collection.name}/reminder`}/>
-      <BackButton href="/" />
+      <Button text="Edit" href={`/upcoming/${collection.name}/edit`} />
+      <Button text="Remind me" href={`/upcoming/${collection.name}/reminder`}/>
+      <BackButton href="/upcoming" />
     </>
   );
 };
