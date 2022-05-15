@@ -1,19 +1,12 @@
-import type { GetServerSidePropsContext } from "next";
-import router, { useRouter } from "next/router";
 import { ReactElement, useState } from "react";
-import Button from "../../../components/button";
+import CreateReminderButton from "../../../components/reminder/create-reminder-button";
 import Divider from "../../../components/reminder/divider";
 import Input from "../../../components/reminder/input";
 import ReminderHeader from "../../../components/reminder/reminder-header";
 import TermsAndConditions from "../../../components/reminder/terms-and-conditions";
-import {
-  GetNftCollectionDocument,
-  NftCollectionType,
-  GetNftCollectionQuery,
-  useCreateReminderMutation,
-} from "../../../generated/graphql";
+import { NftCollectionType } from "../../../generated/graphql";
 import { ReminderLayout } from "../../../layouts/reminder-layout";
-import { addApolloState, initializeApollo } from "../../../lib/apolloClient";
+import { getCollectionFromQueryName } from "../../../utils";
 import { NextPageWithLayout } from "../../../utils/types";
 
 interface ReminderProps {
@@ -24,36 +17,18 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
   const [email, setEmail] = useState<string>("");
   const [agreed, setAgreed] = useState<boolean>(false);
 
-  const [createReminder, { data, loading, error }] =
-    useCreateReminderMutation();
-
   return (
-    <div>
+    <>
       <ReminderHeader name={collection.name} />
       <Input label="Email" setValue={setEmail} value={email} />
-
       <TermsAndConditions agreed={agreed} setAgreed={setAgreed} />
-
       <Divider />
-
-      <div className="flex justify-end">
-        <div className="w-2/5">
-          <Button
-            text="Confirm"
-            onClick={() => {
-              createReminder({
-                variables: {
-                  email,
-                  collection: collection.uuid,
-                },
-              });
-              router.push(`/upcoming`);
-            }}
-            disabled={loading || !email || !agreed}
-          />
-        </div>
-      </div>
-    </div>
+      <CreateReminderButton
+        agreed={agreed}
+        email={email}
+        collectionId={collection.uuid}
+      />
+    </>
   );
 };
 
@@ -61,29 +36,6 @@ Reminder.getLayout = function getLayout(page: ReactElement) {
   return <ReminderLayout>{page}</ReminderLayout>;
 };
 
-export const getServerSideProps = async ({
-  query: { name },
-}: GetServerSidePropsContext) => {
-  const apolloClient = initializeApollo();
-
-  const { data } = await apolloClient.query<GetNftCollectionQuery>({
-    query: GetNftCollectionDocument,
-    variables: {
-      name,
-    },
-  });
-
-  const collection = data?.getNFTCollection;
-
-  if (!collection) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return addApolloState(apolloClient, {
-    props: { collection },
-  });
-};
+export const getServerSideProps = getCollectionFromQueryName;
 
 export default Reminder;
