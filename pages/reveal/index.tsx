@@ -9,7 +9,7 @@ import nft from "../../public/nft.png";
 const NFTImage = () => {
   return (
     <div className="mx-9">
-      <Image src={nft} alt="loading" />
+      <Image src={nft} alt="loading" className="blur-lg" />
     </div>
   );
 };
