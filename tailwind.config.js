@@ -13,7 +13,7 @@ module.exports = {
       },
       transitionDuration: {
         '1500': '1500ms',
-      }
+      },
     },
   },
   variants: {},
