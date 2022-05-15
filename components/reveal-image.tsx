@@ -9,6 +9,7 @@ const RevealImage = () => {
 
   return (
     <div
+      data-testid="reveal-image"
       className={`mx-9 ${blur ? "cursor-pointer" : ""}`}
       onMouseMove={() => setShowCursor(true)}
       onMouseOut={() => setShowCursor(false)}
