@@ -76,23 +76,27 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
         )}
       </div>
 
-      <div className="py-5">
+      <div className="pt-5 pb-3">
         <div className="flex-grow border-t border-mid-gray"></div>
       </div>
 
-      <Button
-        text="Confirm"
-        onClick={() => {
-          createReminder({
-            variables: {
-              email,
-              collection: collection.uuid,
-            },
-          });
-          router.push(`/upcoming/${collection.name}`);
-        }}
-        disabled={loading || !email || !agreed}
-      />
+      <div className="flex justify-end">
+        <div className="w-2/5">
+          <Button
+            text="Confirm"
+            onClick={() => {
+              createReminder({
+                variables: {
+                  email,
+                  collection: collection.uuid,
+                },
+              });
+              router.push(`/upcoming/${collection.name}`);
+            }}
+            disabled={loading || !email || !agreed}
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Button = ({ text, href, onClick, disabled = false }: ButtonProps) => {
   const styledButton = (
     <button
       type="button"
-      className="border rounded border-carbon hover:text-cotton hover:bg-carbon text-carbon p-0.5 mr-1.5 pl-1.5 pr-1.5 w-full"
+      className="border rounded-lg border-carbon hover:text-cotton hover:bg-carbon text-carbon p-2 mr-1.5 px-1.5 w-full"
       onClick={onClick}
       disabled={disabled}
     >
