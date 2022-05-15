@@ -11,7 +11,7 @@ const RevealImage = () => {
   return (
     <div className="mx-9">
       <div
-        className="cursor-pointer"
+        className={!visible ? "cursor-pointer" : undefined}
         onMouseEnter={() => {
           if (!showCursor) {
             setShowCursor(true);
@@ -23,11 +23,14 @@ const RevealImage = () => {
           }
         }}
       >
-      {showCursor && <Cursor />}
+        {showCursor && !visible && <Cursor />}
         <Image
           src={nft}
           alt="loading"
           className={`transition-all duration-1500 ${visible ? "" : "blur-lg"}`}
+          onClick={() => {
+            setVisible(true);
+          }}
         />
       </div>
     </div>
