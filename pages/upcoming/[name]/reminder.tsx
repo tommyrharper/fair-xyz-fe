@@ -88,7 +88,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
                   collection: collection.uuid,
                 },
               });
-              router.push(`/upcoming/${collection.name}`);
+              router.push(`/upcoming`);
             }}
             disabled={loading || !email || !agreed}
           />

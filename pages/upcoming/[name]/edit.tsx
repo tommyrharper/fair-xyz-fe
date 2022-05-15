@@ -1,9 +1,8 @@
-import { format } from "date-fns";
 import type { GetServerSidePropsContext } from "next";
+import router from "next/router";
 import { ReactElement, useState } from "react";
 import BackButton from "../../../components/back-button";
 import Button from "../../../components/button";
-import Header from "../../../components/header";
 import TextInput from "../../../components/text-input";
 import {
   GetNftCollectionDocument,
@@ -81,6 +80,7 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
           updateNftCollectionMutation({
             variables,
           });
+          router.push(`/upcoming`);
         }}
         disabled={loading}
       />
