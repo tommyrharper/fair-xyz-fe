@@ -1,30 +1,14 @@
-import {
-  Dispatch,
-  ReactElement,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
-import Image from "next/Image";
-import BackButton from "../../components/back-button";
-import Header from "../../components/header";
-import { DefaultLayout } from "../../layouts/default";
+import { ReactElement } from "react";
 import { NextPageWithLayout } from "../../utils/types";
-import nft from "../../public/nft.png";
-import Cursor from "../../components/cursor";
 import RevealImage from "../../components/reveal-image";
 
-
 const Reveal: NextPageWithLayout<{}> = () => {
-  const [showCursor, setShowCursor] = useState<boolean>(false);
-
   return (
     <div className="flex">
-      {showCursor && <Cursor />}
-      <RevealImage setShowCursor={setShowCursor} />
-      <RevealImage setShowCursor={setShowCursor} />
-      <RevealImage setShowCursor={setShowCursor} />
-      <RevealImage setShowCursor={setShowCursor} />
+      <RevealImage />
+      <RevealImage />
+      <RevealImage />
+      <RevealImage />
       {/* <BackButton href="/" /> */}
     </div>
   );
