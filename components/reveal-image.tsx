@@ -10,12 +10,8 @@ const RevealImage = () => {
   return (
     <div
       className={`mx-9 ${blur ? "cursor-pointer" : ""}`}
-      onMouseMove={() => {
-        setShowCursor(true);
-      }}
-      onMouseOut={() => {
-        setShowCursor(false);
-      }}
+      onMouseMove={() => setShowCursor(true)}
+      onMouseOut={() => setShowCursor(false)}
     >
       {showCursor && blur && <Cursor />}
       <Image

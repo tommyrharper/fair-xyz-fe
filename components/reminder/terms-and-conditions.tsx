@@ -1,33 +1,24 @@
 import { SetStateAction } from "react";
+import SquareBox from "../square-box";
 
 interface TermsAndConditionsProps {
   setAgreed: (agreed: SetStateAction<boolean>) => void;
   agreed: boolean;
 }
 
-const TermsAndConditions = ({
-  agreed,
-  setAgreed,
-}: TermsAndConditionsProps) => {
+const TermsAndConditions = ({ agreed, setAgreed }: TermsAndConditionsProps) => {
+  const agree = () => setAgreed(true);
+  const disagree = () => setAgreed(false);
+
   return (
     <div className="font-RobotoMono text-sm text-carbon mt-2 mb-3.5 flex justify-start items-center">
       AGREE TO OUR TERMS AND CONDITIONS
       {agreed ? (
-        <div
-          className={`bg-mid-gray border border-mid-gray w-4 h-4 cursor-pointer ml-5 transition-colors duration-300 border-2`}
-          onClick={() => {
-            setAgreed(false);
-          }}
-        >
+        <SquareBox colour="mid-gray" onClick={disagree}>
           <div className="text-cotton text-lg -mt-2.5">{agreed ? "✔" : ""}</div>
-        </div>
+        </SquareBox>
       ) : (
-        <div
-          className={`bg-cotton border border-mid-gray w-4 h-4 cursor-pointer ml-5 transition-colors duration-300 border-2`}
-          onClick={() => {
-            setAgreed(true);
-          }}
-        ></div>
+        <SquareBox colour="cotton" onClick={agree} />
       )}
     </div>
   );

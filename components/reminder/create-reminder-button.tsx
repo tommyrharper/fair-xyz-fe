@@ -20,7 +20,7 @@ const CreateReminderButton = ({
 
   return (
     <div className="flex justify-end">
-      <div className="w-2/5">
+      <div className="md:w-2/5 sm:w-full">
         <Button text="Confirm" onClick={onClickConfirm} disabled={disabled} />
       </div>
     </div>
