@@ -1,6 +1,7 @@
 import type { GetServerSidePropsContext } from "next";
 import { ReactElement } from "react";
 import BackButton from "../../../components/back-button";
+import BigButton from "../../../components/big-button";
 import Button from "../../../components/button";
 import Header from "../../../components/header";
 import {
@@ -18,19 +19,19 @@ interface CollectionProps {
 
 const Collection: NextPageWithLayout<CollectionProps> = ({ collection }) => {
   return (
-    <>
-      <Header text={collection.name} />
-
-      <Button text="Edit" href={`/upcoming/${collection.name}/edit`} />
-      <Button text="Remind me" href={`/upcoming/${collection.name}/reminder`}/>
-      <BackButton href="/upcoming" />
-    </>
+    <div className="bg-neutral-50 h-screen">
+      <div className="grid grid-cols-1 h-full divide-y-2">
+        <BigButton  text="Remind me" href={`/upcoming/${collection.name}/reminder`}/>
+        <BigButton text="Edit" href={`/upcoming/${collection.name}/edit`}  />
+        <BigButton text="Back" href="/upcoming" />
+      </div>
+    </div>
   );
 };
 
-Collection.getLayout = function getLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
-};
+// Collection.getLayout = function getLayout(page: ReactElement) {
+//   return <DefaultLayout>{page}</DefaultLayout>;
+// };
 
 export const getServerSideProps = async ({
   query: { name },
