@@ -1,17 +1,14 @@
 import type { GetServerSidePropsContext } from "next";
 import router, { useRouter } from "next/router";
 import { ReactElement, useState } from "react";
-import BackButton from "../../../components/back-button";
 import Button from "../../../components/button";
-import Header from "../../../components/header";
-import TextInput from "../../../components/text-input";
 import {
   GetNftCollectionDocument,
   NftCollectionType,
   GetNftCollectionQuery,
   useCreateReminderMutation,
 } from "../../../generated/graphql";
-import { DefaultLayout } from "../../../layouts/default";
+import { ReminderLayout } from "../../../layouts/reminder-layout";
 import { addApolloState, initializeApollo } from "../../../lib/apolloClient";
 import { NextPageWithLayout } from "../../../utils/types";
 
@@ -27,7 +24,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
     useCreateReminderMutation();
 
   return (
-    <div className="my-2.5">
+    <div>
       <div className="mb-4">
         <span className="text-carbon text-lg">
           Get reminded about{" "}
@@ -102,7 +99,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
 };
 
 Reminder.getLayout = function getLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
+  return <ReminderLayout>{page}</ReminderLayout>;
 };
 
 export const getServerSideProps = async ({

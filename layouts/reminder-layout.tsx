@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-export const DefaultLayout = ({ children }: PropsWithChildren<unknown>) => {
+export const ReminderLayout = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <div className="bg-white h-screen">
       <div className="flex mb-4 justify-center items-center h-3/4">
