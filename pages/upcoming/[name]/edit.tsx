@@ -1,19 +1,15 @@
-import type { GetServerSidePropsContext } from "next";
 import router from "next/router";
 import { ReactElement, useState } from "react";
 import BackButton from "../../../components/back-button";
 import Button from "../../../components/button";
 import TextInput from "../../../components/text-input";
 import {
-  GetNftCollectionDocument,
   NftCollectionType,
-  GetNftCollectionQuery,
   useUpdateNftCollectionMutation,
   InputMaybe,
 } from "../../../generated/graphql";
 import { DefaultLayout } from "../../../layouts/default";
-import { addApolloState, initializeApollo } from "../../../lib/apolloClient";
-import { getDateInputString } from "../../../utils";
+import { getCollectionFromQueryName, getDateInputString } from "../../../utils";
 import { NextPageWithLayout } from "../../../utils/types";
 
 interface UpdateNftCollectionArgs {
@@ -95,29 +91,6 @@ EditCollection.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>;
 };
 
-export const getServerSideProps = async ({
-  query: { name },
-}: GetServerSidePropsContext) => {
-  const apolloClient = initializeApollo();
-
-  const { data } = await apolloClient.query<GetNftCollectionQuery>({
-    query: GetNftCollectionDocument,
-    variables: {
-      name,
-    },
-  });
-
-  const collection = data?.getNFTCollection;
-
-  if (!collection) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return addApolloState(apolloClient, {
-    props: { collection },
-  });
-};
+export const getServerSideProps = getCollectionFromQueryName;
 
 export default EditCollection;
