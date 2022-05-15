@@ -1,4 +1,10 @@
-import { ReactElement, useEffect, useState } from "react";
+import {
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import Image from "next/Image";
 import BackButton from "../../components/back-button";
 import Header from "../../components/header";
@@ -7,13 +13,24 @@ import { NextPageWithLayout } from "../../utils/types";
 import nft from "../../public/nft.png";
 import Cursor from "../../components/cursor";
 
-const NFTImage = () => {
+interface RevealImageProps {
+  setShowCursor: Dispatch<SetStateAction<boolean>>;
+}
+
+const RevealImage = ({ setShowCursor }: RevealImageProps) => {
   const [visible, setVisible] = useState<boolean>(false);
 
   return (
     <div className="mx-9">
-      <div className="cursor-pointer">
-        {/* <div className="cursor-fancy"> */}
+      <div
+        className="cursor-pointer"
+        onMouseEnter={() => {
+          setShowCursor(true);
+        }}
+        onMouseLeave={() => {
+          setShowCursor(false);
+        }}
+      >
         <Image
           src={nft}
           alt="loading"
@@ -28,35 +45,15 @@ const NFTImage = () => {
 };
 
 const Reveal: NextPageWithLayout<{}> = () => {
-  // const [xCoord, setXCoord] = useState<number>(0);
-  // const [yCoord, setYCoord] = useState<number>(0);
+  const [showCursor, setShowCursor] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   const cursorTag = document.querySelector("div.customCursor");
-  //   const ball = cursorTag?.querySelector("div");
-  //   if (!ball) return;
-
-  //   const handleMouseMove = (event: MouseEvent) => {
-  //     console.log('event', event.pageX, event.pageY);
-  //     setXCoord(event.pageX);
-  //     setYCoord(event.pageY);
-  //     // ball.style.left = event.pageX + "px";
-  //     // ball.style.top = event.pageY + "px";
-  //   };
-
-  //   console.log('adding event listener')
-  //   document.addEventListener("mousemove", handleMouseMove);
-
-  //   return () => {
-  //     document.removeEventListener("mousemove", handleMouseMove);
-  //   };
-  // });
   return (
     <div className="flex">
-      <NFTImage />
-      <NFTImage />
-      <NFTImage />
-      <NFTImage />
+      {showCursor && <Cursor />}
+      <RevealImage setShowCursor={setShowCursor} />
+      <RevealImage setShowCursor={setShowCursor} />
+      <RevealImage setShowCursor={setShowCursor} />
+      <RevealImage setShowCursor={setShowCursor} />
       {/* <BackButton href="/" /> */}
     </div>
   );
@@ -65,7 +62,6 @@ const Reveal: NextPageWithLayout<{}> = () => {
 Reveal.getLayout = function getLayout(page: ReactElement) {
   return (
     <div className="bg-neutral-50 h-screen">
-      <Cursor />
       {/* <div className="flex flex-row mb-4 justify-center items-center h-3/4"> */}
       {/* <div className="overflow-hidden w-1/3"> */}
       {/* </div> */}
