@@ -2,6 +2,7 @@ import router from "next/router";
 import { ReactElement, useState } from "react";
 import BackButton from "../../../components/back-button";
 import Button from "../../../components/button";
+import DateInput from "../../../components/date-input";
 import Divider from "../../../components/reminder/divider";
 import Input from "../../../components/reminder/input";
 import ReminderHeader from "../../../components/reminder/reminder-header";
@@ -44,21 +45,15 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
     <>
       <ReminderHeader start="Edit" name={collection.name} />
 
-      <Input label="Name" setValue={setName} value={name} />
+      <Input label="Name" setValue={setName} value={name} required />
 
-      <>
-        <div className="text-sm text-carbon">LAUNCH DATE</div>
-
-        <input
-          className="px-2 py-2.5 mt-2 mb-5 w-full focus:outline-none bg-cotton border border-mid-gray placeholder-mid-gray placeholder-opacity-70 transition-all duration-1500 outline-none"
-          type="date"
-          value={launchDate}
-          onChange={(e) => {
-            if (!dateUpdated) setDateUpdated(true);
-            setLaunchDate(e.target.value);
-          }}
-        />
-      </>
+      <DateInput
+        label="Launch Date"
+        setDate={setLaunchDate}
+        setDateUpdated={setDateUpdated}
+        dateUpdated={dateUpdated}
+        date={launchDate}
+      />
 
       <div className="flex justify-end mt-2">
         <div className="w-1/2 mr-3">
@@ -88,7 +83,7 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
               });
               router.push(`/upcoming`);
             }}
-            disabled={loading}
+            disabled={loading || !name}
           />
         </div>
       </div>

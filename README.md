@@ -64,3 +64,4 @@ npx tailwind init
 - remove default layout
 - clean edit.tsx
 - rename reminder header
+- remove old text-input and rename input to text-input
