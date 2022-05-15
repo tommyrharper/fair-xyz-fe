@@ -60,3 +60,4 @@ npx tailwind init
 - Check if email is legit (BE & FE)
   - Elegantly handle duplicate emails
 - Update routes to use router.push etc.
+- delete unused fonts

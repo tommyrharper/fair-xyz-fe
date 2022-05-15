@@ -21,6 +21,7 @@ module.exports = {
       fontFamily: {
         NeueMontreal: "NeueMontreal",
         "NeueMontreal-medium": "NeueMontreal-medium",
+        RobotoMono: "RobotoMono",
       },
     },
   },

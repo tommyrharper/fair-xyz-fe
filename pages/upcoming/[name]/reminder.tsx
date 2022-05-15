@@ -27,26 +27,28 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
 
   return (
     <div className="my-2.5">
-      <span className="tablet:text-28px tablet:leading-34px laptop:text-33px laptop:leading-38px  desktop:text-40px desktop:leading-45px text-carbon">
-        Get reminded about{" "}
-        <span className="font-NeueMontreal-medium">{collection.name}</span>
-      </span>
+      <div className="mb-4">
+        <span className="text-carbon text-lg">
+          Get reminded about{" "}
+          <span className="font-NeueMontreal-medium">{collection.name}</span>
+        </span>
+      </div>
 
-      <div>
-        <Header text="EMAIL*" />
-        <div className="w-full mb-4">
-          <input
-            className="w-full flex-1 focus:outline-none bg-cotton border border-mid-gray placeholder-mid-gray placeholder-opacity-70  tablet:placeholder-14px tablet:h-8 laptop:placeholder-18px laptop:h-9 desktop:placeholder-22px transition-all duration-1500 outline-none px-2 py-2.5"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            value={email}
-          />
-          <Header text="Agree to our terms and conditions" />
-          <div className="py-5">
-            <div className="flex-grow border-t border-mid-gray"></div>
-          </div>
-        </div>
+      <div className="text-sm text-carbon">EMAIL*</div>
+
+      <input
+        className="px-2 py-2.5 mt-2 mb-5 w-full focus:outline-none bg-cotton border border-mid-gray placeholder-mid-gray placeholder-opacity-70 transition-all duration-1500 outline-none"
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+        value={email}
+      />
+
+      <div className="font-RobotoMono text-sm text-carbon mt-2 mb-3.5">AGREE TO OUR TERMS AND CONDITIONS</div>
+
+
+      <div className="py-5">
+        <div className="flex-grow border-t border-mid-gray"></div>
       </div>
 
       <Button
