@@ -1,9 +1,9 @@
 import { ReactElement, useState } from "react";
 import DateInput from "../../../components/date-input";
 import EditFooterButtons from "../../../components/edit/edit-footer-buttons";
-import Input from "../../../components/reminder/input";
 import ReminderHeader from "../../../components/reminder/reminder-header";
-import { NftCollectionType, InputMaybe } from "../../../generated/graphql";
+import TextInput from "../../../components/text-input";
+import { NftCollectionType } from "../../../generated/graphql";
 import { ReminderLayout } from "../../../layouts/reminder-layout";
 import {
   getCollectionForServerSideProps,
@@ -27,7 +27,7 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
   return (
     <>
       <ReminderHeader start="Edit" name={collection.name} />
-      <Input label="Name" setValue={setName} value={name} required />
+      <TextInput label="Name" setValue={setName} value={name} required />
       <DateInput
         label="Launch Date"
         setDate={setLaunchDate}

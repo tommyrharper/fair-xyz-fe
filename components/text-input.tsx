@@ -1,23 +1,31 @@
-import { ChangeEventHandler, SetStateAction } from "react";
+import { SetStateAction } from "react";
+import TextInputLabel from "./input-label";
 
 interface TextInputProps {
-  placeholder: string;
+  label: string;
   setValue: (value: SetStateAction<string>) => void;
   value: string;
+  required?: boolean;
 }
 
-const TextInput = ({ placeholder, setValue, value }: TextInputProps) => {
+const TextInput = ({
+  label,
+  value,
+  setValue,
+  required = false,
+}: TextInputProps) => {
   return (
-    <div className="w-full mb-4">
+    <>
+      <TextInputLabel name={label} required={required} />
+
       <input
-        className="w-full flex-1 font-NeueMontreal focus:outline-none bg-cotton border-b border-black placeholder-mid_gray placeholder-opacity-70  tablet:placeholder-14px tablet:h-8 laptop:placeholder-18px laptop:h-9 desktop:placeholder-22px transition-all duration-1500 outline-none"
-        placeholder={placeholder}
+        className="px-2 py-2.5 mt-2 mb-5 w-full focus:outline-none bg-cotton border border-mid-gray placeholder-mid-gray placeholder-opacity-70 transition-all duration-1500 outline-none"
         onChange={(e) => {
           setValue(e.target.value);
         }}
         value={value}
       />
-    </div>
+    </>
   );
 };
 

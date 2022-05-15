@@ -1,9 +1,9 @@
 import { ReactElement, useState } from "react";
 import CreateReminderButton from "../../../components/reminder/create-reminder-button";
 import Divider from "../../../components/reminder/divider";
-import Input from "../../../components/reminder/input";
 import ReminderHeader from "../../../components/reminder/reminder-header";
 import TermsAndConditions from "../../../components/reminder/terms-and-conditions";
+import TextInput from "../../../components/text-input";
 import { NftCollectionType } from "../../../generated/graphql";
 import { ReminderLayout } from "../../../layouts/reminder-layout";
 import { getCollectionForServerSideProps } from "../../../utils";
@@ -20,7 +20,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
   return (
     <>
       <ReminderHeader start="Get reminded about" name={collection.name} />
-      <Input label="Email" setValue={setEmail} value={email} required />
+      <TextInput label="Email" setValue={setEmail} value={email} required />
       <TermsAndConditions agreed={agreed} setAgreed={setAgreed} />
       <Divider />
       <CreateReminderButton

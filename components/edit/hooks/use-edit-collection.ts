@@ -20,7 +20,7 @@ export const useEditCollection = ({
   const [updateNftCollectionMutation, { data, loading }] =
     useUpdateNftCollectionMutation();
 
-  const onClickUpdate = () => {
+  const onClickUpdate = async () => {
     const variables: UpdateNftCollectionArgs = {
       uuid: collection.uuid,
     };
@@ -28,7 +28,7 @@ export const useEditCollection = ({
     if (dateUpdated) variables.launchDate = launchDate ? launchDate : null;
     if (name && name !== collection.name) variables.name = name;
 
-    updateNftCollectionMutation({
+    await updateNftCollectionMutation({
       variables,
     });
 
