@@ -66,3 +66,4 @@ npx tailwind init
 - rename reminder header
 - remove old text-input and rename input to text-input
 - Add hooks
+- Handle dates that have already expired
