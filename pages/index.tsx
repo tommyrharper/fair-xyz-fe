@@ -7,7 +7,7 @@ const Home: NextPageWithLayout<{}> = () => {
   return (
     <>
       <Button text="Upcoming releases" href={`/upcoming`} />
-      <Button text="Reveal new nfts!" href={`/upcoming`} />
+      <Button text="Reveal new nfts!" href={`/reveal`} />
     </>
   );
 };
