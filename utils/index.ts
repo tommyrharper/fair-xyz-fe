@@ -40,7 +40,9 @@ export const getCollectionsForServerSideProps = async (
 ) => {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query({ query: GetNftCollectionsDocument });
+  await apolloClient.query({
+    query: GetNftCollectionsDocument,
+  });
 
   return addApolloState(apolloClient, {
     props: {},
