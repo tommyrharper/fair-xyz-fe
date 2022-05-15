@@ -2,6 +2,7 @@ import type { GetServerSidePropsContext } from "next";
 import router, { useRouter } from "next/router";
 import { ReactElement, useState } from "react";
 import Button from "../../../components/button";
+import Divider from "../../../components/reminder/divider";
 import Input from "../../../components/reminder/input";
 import ReminderHeader from "../../../components/reminder/reminder-header";
 import TermsAndConditions from "../../../components/reminder/terms-and-conditions";
@@ -33,9 +34,7 @@ const Reminder: NextPageWithLayout<ReminderProps> = ({ collection }) => {
 
       <TermsAndConditions agreed={agreed} setAgreed={setAgreed} />
 
-      <div className="pt-5 pb-3">
-        <div className="flex-grow border-t border-mid-gray"></div>
-      </div>
+      <Divider />
 
       <div className="flex justify-end">
         <div className="w-2/5">
