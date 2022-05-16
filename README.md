@@ -26,6 +26,7 @@ Here are a few things I would do if I was going to spend more time on this:
 - Optimize the site with getStaticProps.
 - Improve styling, particularly the edit page.
 - Add CI/CD running tests and linting etc on the FE and BE.
+- Setup environment variables on the FE and BE.
 
 ## Testing
 
