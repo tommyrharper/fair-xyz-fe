@@ -25,6 +25,7 @@ Here are a few things I would do if I was going to spend more time on this:
 - Elegantly reject launch dates that are in the past on the FE and BE.
 - Optimize the site with getStaticProps.
 - Improve styling, particularly the edit page.
+- Add CI/CD running tests and linting etc on the FE and BE.
 
 ## Testing
 
