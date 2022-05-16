@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "yarn run generate",
     "dev": "next dev",
-    "prebuild": "yarn run generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
