@@ -1,9 +1,9 @@
-interface ReminderHeaderProps {
+interface EndsBoldHeaderProps {
   start: string;
   name: string;
 }
 
-const ReminderHeader = ({ start, name }: ReminderHeaderProps) => {
+const EndsBoldHeader = ({ start, name }: EndsBoldHeaderProps) => {
   return (
     <div className="mb-4">
       <span className="text-carbon text-lg">
@@ -14,4 +14,4 @@ const ReminderHeader = ({ start, name }: ReminderHeaderProps) => {
   );
 };
 
-export default ReminderHeader;
+export default EndsBoldHeader;

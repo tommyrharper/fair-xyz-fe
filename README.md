@@ -56,14 +56,6 @@ npx tailwind init
 
 ## Todo
 
-- Add arrow back button to layout
 - Check if email is legit (BE & FE)
   - Elegantly handle duplicate emails
-- Update routes to use router.push etc.
-- delete unused fonts
-- remove default layout
-- clean edit.tsx
-- rename reminder header
-- remove old text-input and rename input to text-input
-- Add hooks
 - Handle dates that have already expired
