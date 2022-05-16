@@ -21,8 +21,8 @@ I decided I wanted this to be done this weekend, and so am not going to do any m
 
 Here are a few things I would do if I was going to spend more time on this:
 - Check if the email addresses are real on the FE and BE.
-- Elegantly handle duplicate requests for a reminder with the same email (currently this just throws a big error).
-- Elegantly reject launch dates that are in the past on the FE and BE.
+- Elegantly handle duplicate requests for a reminder with the same email for a particular collection (currently this just throws a big error).
+- Elegantly reject/handle launch dates that are in the past on the FE and BE.
 - Optimize the site with getStaticProps.
 - Improve styling, particularly the edit page.
 - Add CI/CD running tests and linting etc on the FE and BE.
