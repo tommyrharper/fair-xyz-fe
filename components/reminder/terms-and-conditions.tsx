@@ -1,5 +1,4 @@
 import { SetStateAction } from "react";
-import SquareBox from "../square-box";
 
 interface TermsAndConditionsProps {
   setAgreed: (agreed: SetStateAction<boolean>) => void;
@@ -14,11 +13,19 @@ const TermsAndConditions = ({ agreed, setAgreed }: TermsAndConditionsProps) => {
     <div className="font-RobotoMono text-sm text-carbon mt-2 mb-3.5 flex justify-start items-center">
       AGREE TO OUR TERMS AND CONDITIONS
       {agreed ? (
-        <SquareBox testId="disagree" colour="mid-gray" onClick={disagree}>
+        <div
+          data-testid="disagree"
+          className="bg-mid-gray border border-mid-gray w-4 h-4 cursor-pointer ml-5 transition-colors duration-300 border-2"
+          onClick={disagree}
+        >
           <div className="text-cotton text-lg -mt-2.5">{agreed ? "✔" : ""}</div>
-        </SquareBox>
+        </div>
       ) : (
-        <SquareBox testId="agree" colour="cotton" onClick={agree} />
+        <div
+          data-testid="agree"
+          className="bg-cotton border border-mid-gray w-4 h-4 cursor-pointer ml-5 transition-colors duration-300 border-2"
+          onClick={agree}
+        />
       )}
     </div>
   );
