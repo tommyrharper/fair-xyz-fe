@@ -99,32 +99,54 @@ describe("Reminder", () => {
     });
   });
 
-  it("does not trigger mutation if no email is given", () => {
-    const mockCreateReminderMutation = mockUseCreateReminderMutation();
+  describe("does not trigger mutation", () => {
+    it("if no email is given", () => {
+      const mockCreateReminderMutation = mockUseCreateReminderMutation();
 
-    renderReminderScreen();
+      renderReminderScreen();
 
-    const agreeCheckBox = screen.getByTestId("agree");
-    fireEvent.click(agreeCheckBox);
+      const agreeCheckBox = screen.getByTestId("agree");
+      fireEvent.click(agreeCheckBox);
 
-    const confirmButton = screen.getByTestId("confirm-reminder");
-    fireEvent.click(confirmButton);
+      const confirmButton = screen.getByTestId("confirm-reminder");
+      fireEvent.click(confirmButton);
 
-    expect(mockCreateReminderMutation).not.toHaveBeenCalled();
-  });
+      expect(mockCreateReminderMutation).not.toHaveBeenCalled();
+    });
 
-  it("does not trigger mutation if terms and conditions are not accepted", () => {
-    const mockCreateReminderMutation = mockUseCreateReminderMutation();
+    it("if terms and conditions are not accepted", () => {
+      const mockCreateReminderMutation = mockUseCreateReminderMutation();
 
-    renderReminderScreen();
+      renderReminderScreen();
 
-    const emailInput = screen.getByTestId("Email-text-input");
-    fireEvent.change(emailInput, { target: { value: MOCK_EMAIL } });
+      const emailInput = screen.getByTestId("Email-text-input");
+      fireEvent.change(emailInput, { target: { value: MOCK_EMAIL } });
 
-    const confirmButton = screen.getByTestId("confirm-reminder");
-    fireEvent.click(confirmButton);
+      const confirmButton = screen.getByTestId("confirm-reminder");
+      fireEvent.click(confirmButton);
 
-    expect(mockCreateReminderMutation).not.toHaveBeenCalled();
+      expect(mockCreateReminderMutation).not.toHaveBeenCalled();
+    });
+
+    it("f terms and conditions are accepted and then rejected", () => {
+      const mockCreateReminderMutation = mockUseCreateReminderMutation();
+
+      renderReminderScreen();
+
+      const emailInput = screen.getByTestId("Email-text-input");
+      fireEvent.change(emailInput, { target: { value: MOCK_EMAIL } });
+
+      const agreeCheckBox = screen.getByTestId("agree");
+      fireEvent.click(agreeCheckBox);
+
+      const disagreeCheckBox = screen.getByTestId("disagree");
+      fireEvent.click(disagreeCheckBox);
+
+      const confirmButton = screen.getByTestId("confirm-reminder");
+      fireEvent.click(confirmButton);
+
+      expect(mockCreateReminderMutation).not.toHaveBeenCalled();
+    });
   });
 
   it("redirects back to upcoming collections after successful confirmation of reminder", () => {

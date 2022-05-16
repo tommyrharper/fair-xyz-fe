@@ -11,7 +11,7 @@
     "lint": "next lint",
     "generate": "graphql-codegen --config codegen.yml",
     "test": "jest --watch --verbose",
-    "test:cov": "jest --watch --verbose --coverage"
+    "test:cov": "jest --all --verbose --coverage"
   },
   "dependencies": {
     "@apollo/client": "^3.6.2",

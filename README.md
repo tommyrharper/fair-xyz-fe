@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FAIR-XYZ Take Home Challenge FE
+
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_80.svg#9" alt="Coverage" /></a>
 
 ## Getting Started
 
@@ -12,50 +14,29 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Notes
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+I decided I wanted this to be done this weekend, and so am not going to do any more at this point.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Here are a few things I would do if I was going to spend more time on this:
+- Check if the email addresses are real on the FE and BE.
+- Elegantly handle duplicate requests for a reminder with the same email (currently this just throws a big error)
+- Elegantly reject launch dates that are in the past on the FE and BE.
+- Optimize the site with static generation rather than server side props.
+- Improve styling, particularly the edit page.
 
-## Steps I followed to set this up
+## Testing
 
-1. Create `lib/apolloClient.ts` and copy this [file](https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js) into it.
+Again, like on the back-end, I skipped e2e testing in this case, so that is something I would like to do if I had more time.
 
-2. Install deps:
-```bash
-npm i @apollo/client lodash deepmerge
-npm i -D @types/lodash
-npm i -D ts-node @graphql-codegen/cli
-```
-3. Added types to `apolloClient.ts` and remove example specific logic.
-4. Setup apollo provider.
-5. Setup codegen:
-```
-npx graphql-codegen init
-> React
-> http://localhost:8000/graphql
-> graphql/**/*.graphql
-> TypeScript/TypeScript Operations/TypeScript React Apollo
-> generated/graphql.tsx
-> No
-> codegen.yml
-> generate
-```
-6. `npm run generate`
-7. Add tailwind:
-```
-npm i tailwindcss
-```
-- create `styles/index.css`
-```
-npx tailwind init
-```
-- create `postcss.config.js`
-- import `../styles/index.css` instead of `../styles/globals.css`
+I hit 80% test coverage which could be improved, but I am reasonably happy with it as all the most important functionality (that I have implemented) is tested.
 
-## Todo
+All the routing and buttons on the pages are tested and all the mutations and input forms are tested for all their major functionality.
 
-- Check if email is legit (BE & FE)
-  - Elegantly handle duplicate emails
-- Handle dates that have already expired
+![](2022-05-16-01-19-49.png)
+
+## Design decisions
+
+There is not much to note on this one in terms of design decisions, as I basically just followed the instructions in the given in the task and did not use any other technologies.
+
+Also Next.js is very opinionated (in a good way), which made it hard for me to stray too far.
