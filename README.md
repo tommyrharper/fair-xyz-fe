@@ -4,12 +4,13 @@
 
 ## Getting Started
 
-First, run the development server:
+1. If you have not already, go to the [BE repo](https://github.com/tommyrharper/fair-xyz-be) and get that set up. I did not hardcore any values on the FE, instead I wrote migrations which populate the BE, so you will need to get that up and running before most of the FE will work.
+
+2. Install packages and then run the development server:
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -20,9 +21,9 @@ I decided I wanted this to be done this weekend, and so am not going to do any m
 
 Here are a few things I would do if I was going to spend more time on this:
 - Check if the email addresses are real on the FE and BE.
-- Elegantly handle duplicate requests for a reminder with the same email (currently this just throws a big error)
+- Elegantly handle duplicate requests for a reminder with the same email (currently this just throws a big error).
 - Elegantly reject launch dates that are in the past on the FE and BE.
-- Optimize the site with static generation rather than server side props.
+- Optimize the site with getStaticProps.
 - Improve styling, particularly the edit page.
 
 ## Testing
