@@ -18,7 +18,7 @@ const TermsAndConditions = ({ agreed, setAgreed }: TermsAndConditionsProps) => {
           <div className="text-cotton text-lg -mt-2.5">{agreed ? "✔" : ""}</div>
         </SquareBox>
       ) : (
-        <SquareBox colour="cotton" onClick={agree} />
+        <SquareBox testId="agree" colour="cotton" onClick={agree} />
       )}
     </div>
   );

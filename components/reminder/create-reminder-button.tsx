@@ -21,7 +21,12 @@ const CreateReminderButton = ({
   return (
     <div className="flex justify-end">
       <div className="md:w-2/5 sm:w-full">
-        <Button text="Confirm" onClick={onClickConfirm} disabled={disabled} />
+        <Button
+          text="Confirm"
+          onClick={onClickConfirm}
+          disabled={disabled}
+          testId="confirm-reminder"
+        />
       </div>
     </div>
   );

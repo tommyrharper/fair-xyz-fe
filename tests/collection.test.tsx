@@ -4,10 +4,8 @@ import Collection from "../pages/upcoming/[name]";
 import "@testing-library/jest-dom";
 import mockRouter from "next-router-mock";
 import {
-  GetNftCollectionsDocument,
   NftCollectionType,
 } from "../generated/graphql";
-import { MockedProvider } from "@apollo/client/testing";
 import { MOCK_COLLECTIONS } from "./utils";
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -15,25 +13,7 @@ jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const renderCollectionScreen = () => {
-  render(
-    <MockedProvider
-      mocks={[
-        {
-          request: {
-            query: GetNftCollectionsDocument,
-          },
-          result: {
-            data: {
-              getNFTCollections: MOCK_COLLECTIONS,
-            },
-          },
-        },
-      ]}
-      addTypename={true}
-    >
-      <Collection collection={MOCK_COLLECTIONS[0] as NftCollectionType} />
-    </MockedProvider>
-  );
+  render(<Collection collection={MOCK_COLLECTIONS[0] as NftCollectionType} />);
 };
 
 describe("Collection", () => {

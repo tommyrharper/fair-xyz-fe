@@ -4,12 +4,20 @@ interface ButtonProps {
   text: string;
   href?: string;
   onClick?: () => void;
-  disabled?: boolean
+  disabled?: boolean;
+  testId?: string;
 }
 
-const Button = ({ text, href, onClick, disabled = false }: ButtonProps) => {
+const Button = ({
+  text,
+  href,
+  onClick,
+  testId,
+  disabled = false,
+}: ButtonProps) => {
   const styledButton = (
     <button
+      data-testid={testId}
       type="button"
       className="border rounded-lg border-carbon hover:text-cotton hover:bg-carbon text-carbon p-2 mr-1.5 px-1.5 w-full"
       onClick={onClick}
