@@ -32,7 +32,6 @@ const EditCollection: NextPageWithLayout<EditCollectionProps> = ({
         label="Launch Date"
         setDate={setLaunchDate}
         setDateUpdated={setDateUpdated}
-        dateUpdated={dateUpdated}
         date={launchDate}
       />
       <EditFooterButtons
